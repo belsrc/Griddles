@@ -1,0 +1,1077 @@
+/*
+ From reset.max.css
+ ========================================================================== */
+
+/* $Resets
+    HTML5 Reset v2          :: http://html5reset.org
+    Eric Meyer              :: http://ericmeyer.com
+    HTML5 Doctor            :: http://html5doctor.com
+    HTML5 Boilerplate       :: http://html5boilerplate.com
+    and a little of my own
+========================================================================== */
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, cite, code, em,
+img, q, small, strike, strong, ol, ul, li, form, label, table, tbody, tfoot, thead, tr,
+th, td, article, aside, figure, figcaption, footer, header, hgroup, nav, section, time {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    background: transparent;
+}
+article,
+aside,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section {
+    display: block;
+}
+html {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    font-size: 100%;
+    min-height: 100%;
+    overflow-y: scroll; /* force a vertical scrollbar to prevent a jumpy page */
+}
+strong {
+    font-weight: bold;
+}
+em {
+    font-style: italic;
+}
+ol,
+ul {
+    list-style: none;
+}
+li {
+    display: list-item;
+}
+img {
+    -ms-interpolation-mode: bicubic;
+    color: transparent;
+    font-size: 0;
+    height: auto;
+    vertical-align: middle;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+th,
+td {
+    font-weight: normal;
+    text-align: left;
+    vertical-align: top;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+input[type=search]::-webkit-search-decoration,
+input[type=search]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+}
+input,
+select,
+button {
+    vertical-align: middle;
+}
+:focus {
+    outline: transparent none; /* Get rid of the glow effect */
+}
+svg {
+    overflow: hidden;
+}
+
+/*
+ From grid-rs.max.css
+ ========================================================================== */
+
+/* $Globals-Grid
+========================================================================== */
+.container {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    *zoom: 1;
+    }
+    @media only screen and (max-width:768px) {
+        .container {
+            width: 98%;
+        }
+    }
+
+[class*="grid-"] {
+    float: left;
+    margin: 0 1%;
+}
+
+/* $Columns-Grid
+========================================================================== */
+.container .grid-1 { width: 6.3333%; }
+.container .grid-2 { width: 14.6666%; }
+.container .grid-3 { width: 23%; }
+.container .grid-4 { width: 31.3333%; }
+.container .grid-5 { width: 39.6666%; }
+.container .grid-6 { width: 48%; }
+.container .grid-7 { width: 56.3333%; }
+.container .grid-8 { width: 64.6666%; }
+.container .grid-9 { width: 73%; }
+.container .grid-10 { width: 81.3333%; }
+.container .grid-11 { width: 89.6666%; }
+.container .grid-12 { width: 98%; }
+    @media only screen and (max-width:480px) {
+        .container [class*="grid-"] {
+            float: none;
+            display: block;
+            width: auto;
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+
+/* $Prefixes-Grid
+========================================================================== */
+.container .prefix-1 { padding-left: 8.3333%; }
+.container .prefix-2 { padding-left: 16.6666%; }
+.container .prefix-3 { padding-left: 25%; }
+.container .prefix-4 { padding-left: 33.3333%; }
+.container .prefix-5 { padding-left: 41.6666%; }
+.container .prefix-6 { padding-left: 50%; }
+.container .prefix-7 { padding-left: 58.3333%; }
+.container .prefix-8 { padding-left: 66.6666%; }
+.container .prefix-9 { padding-left: 75%; }
+.container .prefix-10 { padding-left: 83.3333%; }
+.container .prefix-11 { padding-left: 91.6666%; }
+    @media only screen and (max-width:480px) {
+        .container [class*="prefix-"] {
+            padding: 0;
+        }
+    }
+
+/* $Suffixes-Grid
+========================================================================== */
+.container .suffix-1 { padding-right: 8.3333%; }
+.container .suffix-2 { padding-right: 16.6666%; }
+.container .suffix-3 { padding-right: 25%; }
+.container .suffix-4 { padding-right: 33.3333%; }
+.container .suffix-5 { padding-right: 41.6666%; }
+.container .suffix-6 { padding-right: 50%; }
+.container .suffix-7 { padding-right: 58.3333%; }
+.container .suffix-8 { padding-right: 66.6666%; }
+.container .suffix-9 { padding-right: 75%; }
+.container .suffix-10 { padding-right: 83.3333%; }
+.container .suffix-11 { padding-right: 91.6666%; }
+    @media only screen and (max-width:480px) {
+        .container [class*="suffix-"] {
+            padding: 0;
+        }
+    }
+
+/* $Clears-Grid
+========================================================================== */
+.clear {
+    clear: both;
+    display: block;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0; }
+
+.clearfix,
+.container { zoom: 1; }
+
+    .clearfix:before,
+    .clearfix:after,
+    .container:before,
+    .container:after {
+        content: '.';
+        display: block;
+        font-size: 0;
+        height: 0;
+        line-height: 0;
+        overflow: hidden;
+        visibility: hidden;
+        width: 0;
+    }
+
+    .clearfix:after,
+    .container:after {
+        clear: both;
+    }
+
+/*
+ From core.max.css
+ ========================================================================== */
+
+/* $Typography
+
+   Font, font size, and line height properties
+   Modular Scale (Tim Brown)       :: http://modularscale.com/
+
+   Using a double-stranded modular scale of 20px @ 1:1.333	& 44px @ 1:1.333 (Perfect Fourth)
+   http://modularscale.com/scale/?px1=20&px2=44&ra1=1.333&ra2=0
+========================================================================== */
+html {
+    font-size: 125%; /* 20 px */
+    color: #5a5a5a;
+    color: rgba(50, 50, 50, .8);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+    @media only screen and (max-width:480px) {
+        html { text-rendering: optimizeSpeed; }
+    }
+
+body {
+    /* 20px font with 10px leading -> magic number 30 */
+    font: normal normal 400 1rem/1.5 "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6,
+.alpha, .beta, .gamma,
+.delta, .epsilon, .zeta {
+    font-family: "Segoe UI Light", "HelveticaNeue-Light", "Helvetica Neue Light", "Segoe UI", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    letter-spacing: 1px;
+    color: rgb(66, 63, 55);
+    -webkit-font-feature-settings: "liga", "dlig" 0;
+       -moz-font-feature-settings: "liga=1, dlig=0";
+        -ms-font-feature-settings: "liga", "dlig" 0;
+         -o-font-feature-settings: "liga", "dlig" 0;
+            font-feature-settings: "liga", "dlig" 0;
+    font-variant-ligatures: common-ligatures
+}
+
+h1, .alpha {
+    font-size: 2.2rem; /* 44px */
+    line-height: 1.3636; /* 60px (2x magic Number) */
+}
+
+h2, .beta {
+    font-size: 1.777rem; /* 35.5px */
+    line-height: 1.69; /* 60px (2x magic Number) */
+}
+
+h3, .gamma {
+    font-size: 1.65rem; /* 33px */
+    line-height: 1.8181; /* 60px (2x magic Number) */
+}
+h4, .delta  {
+    font-size: 1.333rem; /* 26.6px */
+    line-height: 1.1278; /* 30px (1x magic Number) */
+}
+
+h5, .epsilon {
+    font-size: 1.238rem; /* 24.76px */
+    line-height: 1.2116; /* 30px (1x magic Number) */
+}
+
+h6, .zeta  {
+    font-size: 1rem; /* 20px */
+    line-height: 1.5; /* 30px (1x magic Number) */
+}
+
+small {
+    font-size: .75rem;
+    line-height: 1.3333;
+}
+
+pre, code {
+    font: .9rem/1.1111 "Segoe UI Mono", "Lucida Console", "Lucida Sans Typewriter", "Nimbus Mono L", monospace;
+}
+
+caption, figcaption {
+    font-size: .697em;
+    color: #646464;
+    color: rgba(0, 0, 0, .5);
+    vertical-align: top;
+}
+
+abbr {
+    -webkit-font-feature-settings: "smcp";
+       -moz-font-feature-settings: "smcp=1";
+        -ms-font-feature-settings: "smcp";
+         -o-font-feature-settings: "smcp";
+            font-feature-settings: "smcp";
+    font-variant:small-caps;
+}
+
+/* $General
+========================================================================== */
+::selection {
+    background: #38afba/*#c86464*/;
+    color: #fff;
+    text-shadow: none;
+}
+
+::-moz-selection {
+    background: #38afba/*#c86464*/;
+    color: #fff;
+    text-shadow: none;
+}
+
+body {
+    background: #fff;
+    background-image: -webkit-linear-gradient(rgba(125, 125, 125, .04) 2px, transparent 2px),
+                      -webkit-linear-gradient(0deg, rgba(125, 125, 125, .04) 2px, transparent 2px),
+                      -webkit-linear-gradient(rgba(125, 125, 125, .04) 1px, transparent 1px),
+                      -webkit-linear-gradient(0deg, rgba(125, 125, 125, .04) 1px, transparent 1px);
+
+    background-image: -moz-linear-gradient(rgba(125, 125, 125, .04) 2px, transparent 2px),
+                      -moz-linear-gradient(90deg, rgba(125, 125, 125, .04) 2px, transparent 2px),
+                      -moz-linear-gradient(rgba(125, 125, 125, .04) 1px, transparent 1px),
+                      -moz-linear-gradient(90deg, rgba(125, 125, 125, .04) 1px, transparent 1px);
+
+    background-image: -ms-linear-gradient(rgba(125, 125, 125, .04) 2px, transparent 2px),
+                      -ms-linear-gradient(0deg, rgba(125, 125, 125, .04) 2px, transparent 2px),
+                      -ms-linear-gradient(rgba(125, 125, 125, .04) 1px, transparent 1px),
+                      -ms-linear-gradient(0deg, rgba(125, 125, 125, .04) 1px, transparent 1px);
+
+    background-image: -o-linear-gradient(rgba(125, 125, 125, .04) 2px, transparent 2px),
+                      -o-linear-gradient(0deg, rgba(125, 125, 125, .04) 2px, transparent 2px),
+                      -o-linear-gradient(rgba(125, 125, 125, .04) 1px, transparent 1px),
+                      -o-linear-gradient(0deg, rgba(125, 125, 125, .04) 1px, transparent 1px);
+
+    background-image: linear-gradient(rgba(125, 125, 125, .04) 2px, transparent 2px),
+                      linear-gradient(90deg, rgba(125, 125, 125, .04) 2px, transparent 2px),
+                      linear-gradient(rgba(125, 125, 125, .04) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(125, 125, 125, .04) 1px, transparent 1px);
+
+    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+    background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px
+}
+
+/* $Margins
+========================================================================== */
+article, pre, blockquote, figure, ol, ul, p, p + p,
+h1, h2, h3, h4, h5, h6, hgroup {
+    margin-bottom: 30px;
+    margin-bottom: 1.5rem;
+}
+
+/* $Hgroup styles
+========================================================================== */
+hgroup {
+    display: block;
+}
+
+/* $Footer styles
+========================================================================== */
+footer {
+    font-size: .9rem;
+    padding-bottom: 10px;
+}
+
+/* $Link styles
+========================================================================== */
+/*a {
+    -webkit-transition: color 0.3s ease;
+       -moz-transition: color 0.3s ease;
+        -ms-transition: color 0.3s ease;
+         -o-transition: color 0.3s ease;
+            transition: color 0.3s ease;
+    color: #c86464;
+    text-decoration: none;
+}
+    a:hover {
+        color: #802a30;
+    }
+    a:active {
+        position: relative;
+        top:1px
+    }*/
+a {
+    -webkit-transition: color 0.3s ease;
+       -moz-transition: color 0.3s ease;
+        -ms-transition: color 0.3s ease;
+         -o-transition: color 0.3s ease;
+            transition: color 0.3s ease;
+    color: #ff7600;
+    text-decoration: none;
+}
+    a:hover {
+        background: #ff7600;
+        color: #fff;
+    }
+    a:active {
+        position: relative;
+        top:1px
+    }
+
+/* $Code styles.
+
+   Use <pre> for blocks and <code> for inline
+========================================================================== */
+pre {
+    white-space: pre;       /* CSS2 */
+    white-space: pre-wrap;  /* CSS 2.1 */
+    word-wrap: break-word;  /* IE */
+    display: block;
+    padding: 10px;
+}
+
+code {
+    display: inline;
+    padding: 0 3px;
+    background: #eee;
+    background: rgba(0, 0, 0, .15);
+    border: 1px solid #d7d7d7;
+    border-color: rgba(0, 0, 0, .35);
+}
+
+/* $Quote styles
+
+   Use <blockquote> for blocks and <q> for inline
+   <cite> is used for source
+========================================================================== */
+blockquote, q { quotes: none; }
+blockquote p, cite, q { font-style: italic; }
+
+blockquote p { padding-left: 30px; }
+    blockquote p:first-of-type:before, q:before { content: "\201C\0020"; }
+    blockquote p:last-of-type:after, q:after { content: "\0020\201D"; }
+    blockquote p:first-of-type:before { margin-left: -12px; }
+
+cite {
+    display: block;
+    margin-top: -24px;
+    padding-left: 40px;
+    text-indent: 0;
+}
+    cite:before {
+        content: "\2012";
+    }
+
+/* $Image styles
+========================================================================== */
+figure, figcaption, figure img {
+    display: block;
+}
+
+figure {
+    position: relative;
+    overflow: hidden;
+}
+
+img {
+    max-width: 100%;
+}
+
+/* $Input control styles
+========================================================================== */
+label {
+    cursor: pointer;
+    display: block;
+    margin-bottom: 6px;
+}
+
+input, textarea, button, select {
+    height: auto;
+    width: 100%;
+    font-size: inherit;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+textarea {
+    cursor: text;
+    min-height: 60px;
+    -moz-resize: vertical;
+         resize: vertical;
+}
+
+input[type=range] {
+    margin-top: 16px;
+}
+
+/*
+ From style.max.css
+ ========================================================================== */
+
+/* $Utility classes
+   ========================================================================== */
+.smooth-type  {
+    /* Smooth type */
+    text-shadow:-1px -1px 1px rgba(0, 0, 0, .1), /* top-left */
+                  1px 1px 1px rgba(0, 0, 0, .1), /* bottom-right */
+                  1px 1px 1px rgba(0, 0, 0, .1); /* shadow */
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-strike {
+    text-decoration: line-through;
+}
+
+.bordered {
+    background: #646464;
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid #eee;
+    border-color: rgba(0, 0, 0, .15);
+}
+
+.right {
+    float: right;
+    margin: 10px 0 30px 30px;
+}
+
+.left {
+    float: left;
+    margin: 10px 30px 30px 0;
+}
+
+    @media only screen and (max-width:480px) {
+        .left, .right {
+            float: none;
+            display:block;
+            margin:0;
+        }
+    }
+
+.rhythm {
+    margin-bottom: 30px;
+}
+
+.inline {
+    display: inline-block;
+}
+
+.underline {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    border-color: rgba(0, 0, 0, .15);
+}
+
+.mobile-768, .mobile-480 {
+    display: none;
+}
+    @media only screen and (max-width:768px) {
+        .mobile-768 {
+            display: inline-block;
+        }
+        .no-mobile-768 {
+            display: none;
+        }
+    }
+    @media only screen and (max-width:480px) {
+        .mobile-480 {
+            display: inline-block;
+        }
+        .no-mobile-480 {
+            display: none;
+        }
+    }
+
+/* $Link 'extension' classes
+   ========================================================================== */
+.header-link, .header-link:hover, .header-link:active {
+    color: rgb(66, 63, 55);
+}
+
+.footer-link {
+    color: #5a5a5a;
+    color: rgba(50, 50, 50, .8);
+}
+
+/* $Header 'extension' classes
+   ========================================================================== */
+.grp-header {
+    margin: 0;
+}
+
+.article-header {
+    margin-bottom: 30px;
+}
+    .article-header > time {
+        font-size: .8rem;
+    }
+    @media only screen and (max-width:480px) {
+        .article-header {
+            margin-bottom: 15px;
+        }
+    }
+
+
+/* $Caption Slider
+   From Chris Coyier's post
+   http://css-tricks.com/slide-in-image-captions/ */
+.slide-caption:before {
+    -webkit-transition: all .6s ease;
+       -moz-transition: all .6s ease;
+        -ms-transition: all .6s ease;
+         -o-transition: all .6s ease;
+            transition: all .6s ease;
+    opacity: 0.75;
+    filter: alpha(opacity=75);
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: 24px;
+    height: 24px;
+    -webkit-border-radius: 12px;
+       -moz-border-radius: 12px;
+            border-radius: 12px;
+    background: #eee;
+    background: rgba(0, 0, 0, .15);
+    content: "?";
+    color: #000;
+    text-shadow: 0 0 5px #fff;
+    font-weight: 800;
+    text-align: center;
+    font-size: .875rem;
+    line-height: 24px;
+}
+        .slide-caption:hover:before {
+            opacity: 0;
+        }
+
+
+    .slide-caption figcaption {
+        position: absolute;
+        padding: 10px 20px;
+        opacity: 0;
+        -webkit-transition: all .6s ease;
+           -moz-transition: all .6s ease;
+            -ms-transition: all .6s ease;
+             -o-transition: all .6s ease;
+                transition: all .6s ease;
+        left: 0;
+        bottom: -30%;
+        background: #656565;
+        background: rgba(0, 0, 0, .75);
+        color: #fff;
+        overflow:hidden;
+    }
+        .slide-caption:hover figcaption {
+            opacity: 1;
+            filter: alpha(opacity=1);
+            bottom: 0;
+        }
+
+    .slide-caption img {
+        width: 100%;
+    }
+
+/* $Logo styles
+   ========================================================================== */
+.logo {
+    display: inline-block;
+    font-family: 'IcoMoon';
+    font-size: 3.157rem; /* ~63 px */
+    color: rgb(66, 63, 55);
+    text-shadow:-1px -1px 1px rgba(0, 0, 0, .1), /* top-left */
+                  1px 1px 1px rgba(0, 0, 0, .1), /* bottom-right */
+                  1px 1px 1px rgba(0, 0, 0, .1); /* shadow */
+}
+    @media only screen and (max-width:480px) {
+        .logo {
+            width: 98%;
+            text-align: center;
+        }
+    }
+
+/* $Navigation Styles
+   ========================================================================== */
+.main-nav {
+    font-size: 1.238rem; /* 24.7px */
+    text-align: right;
+}
+
+    @media only screen and (max-width:480px) {
+        .main-nav {
+            text-align: center;
+            font-size: 1rem;
+        }
+    }
+    .main-nav ul {
+        margin: 1.2em 0;
+    }
+        @media only screen and (max-width:480px) {
+            .main-nav ul {
+                margin: 1.7em 0;
+            }
+        }
+        .main-nav ul li {
+            display: inline;
+            list-style-type: none;
+        }
+    .main-nav a {
+        margin: 0 1em;
+        color: rgb(66, 63, 55);
+    }
+        .main-nav a:hover {
+            color: #802a30
+        }
+
+/* $Control styles
+   ========================================================================== */
+/* Base control styles */
+.ctrl {
+    -webkit-transition: all .03s ease-in-out;
+       -moz-transition: all .03s ease-in-out;
+        -ms-transition: all .03s ease-in-out;
+         -o-transition: all .03s ease-in-out;
+            transition: all .03s ease-in-out;
+    border: 1px solid #d2d2d2;
+    border-color: rgba(0, 0, 0, .3);
+    border-radius: 2px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .15);
+       -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .15);
+            box-shadow: 0 2px 1px rgba(0, 0, 0, .15);
+    background: transparent;
+    padding: 6px 10px;
+    margin-bottom: 30px;
+    font: .9rem/1.1111 "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #666;
+    white-space: nowrap;
+    display: block;
+}
+
+    /* Button styles */
+    .btn {
+        text-align: center;
+    }
+        .btn:hover,
+        .btn:focus {
+            border-color: #999;
+            background: -webkit-linear-gradient(top, #efefef, #cfcfcf);
+            background:    -moz-linear-gradient(top, #efefef, #cfcfcf);
+            background:     -ms-linear-gradient(top, #efefef, #cfcfcf);
+            background:      -o-linear-gradient(top, #efefef, #cfcfcf);
+            background:         linear-gradient(top, #efefef, #cfcfcf);
+            -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .25),
+                                inset 0 0 3px rgba(50, 50, 50, .25);
+               -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .25),
+                                inset 0 0 3px rgba(50, 50, 50, .25);
+                    box-shadow: 0 1px 2px rgba(0, 0, 0, .25),
+                                inset 0 0 3px rgba(50, 50, 50, .25);
+            color: #ff7600;
+        }
+        .btn:active,
+        /* 'toggled on' button styles */
+        :root .hidden-chk:checked ~ label {
+            border: 1px solid #888;
+            border-bottom-color: #aaa;
+            background: -webkit-linear-gradient(top, #aaa, #ccc);
+            background:    -moz-linear-gradient(top, #aaa, #ccc);
+            background:     -ms-linear-gradient(top, #aaa, #ccc);
+            background:      -o-linear-gradient(top, #aaa, #ccc);
+            background:         linear-gradient(top, #aaa, #ccc);
+            -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, .2);
+               -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, .2);
+                    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .2);
+        }
+
+    /* Textbox styles */
+    .txt:focus {
+        background: #dcdcdc;
+        background: rgba(0, 0, 0, .1);
+        color: #000;
+        -webkit-box-shadow: none;
+           -moz-box-shadow: none;
+                box-shadow: none;
+        }
+
+    /* combobox styles
+       requires a container element, textbox and element list-item
+
+       <div class="combobox">
+           <input type="text" class="cmb-body" />
+           <ul class="cmb-items">
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    */
+    .combobox {
+        position:relative;
+    }
+        .combobox > .cmb-items {
+            cursor: pointer;
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 999;
+            width: 93.5%;
+            margin: 0;
+            padding: 10px;
+            list-style: none;
+            background: #f0f0f0;
+            color: #666;
+            border-radius: 2px;
+            -webkit-box-shadow: 0 0 5px #999;
+               -moz-box-shadow: 0 0 5px #999;
+                    box-shadow: 0 0 5px #999
+        }
+            .combobox > .cmb-items li {
+                padding: 2px 0;
+                border-bottom: solid 1px rgba(0, 0, 0, .25);
+            }
+                .combobox > .cmb-items li:hover {
+                    background: #ff7600;
+                    color: #fff;
+                }
+                .combobox > .cmb-items li:last-child {
+                    border:none;
+                }
+
+    .cmb-body {
+        cursor: pointer;
+        position:relative;
+        padding-right: 27px;
+    }
+        .cmb-body:before {
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 26px;
+            right: 0;
+            top: 0;
+            background: -webkit-linear-gradient(top, #fff, #e0e0e0);
+            background:    -moz-linear-gradient(top, #fff, #e0e0e0);
+            background:     -ms-linear-gradient(top, #fff, #e0e0e0);
+            background:      -o-linear-gradient(top, #fff, #e0e0e0);
+            background:         linear-gradient(top, #fff, #e0e0e0);
+            border-left: 1px solid #c8c8c8;
+            border-color: rgba(0, 0, 0, .25);
+        }
+        .cmb-body:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 5px;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 8px solid #646464;
+            z-index: 99;
+            margin-top:-4px;
+        }
+
+/* $Misc styles
+   ========================================================================== */
+.main-content {
+    padding-top: 80px;
+}
+    @media only screen and (max-width:480px) {
+        .main-content {
+            padding-top: 30px;
+        }
+    }
+.main-title {
+    font-size: 5rem;
+    margin-bottom: 30px;
+}
+    @media only screen and (max-width:320px) {
+        .main-title {
+            font-size: 4rem;
+        }
+    }
+.blog-post > p:first-of-type {
+    font-weight: 700;
+    font-style: italic;
+    font-size: 1.2em;
+}
+
+/* $Prettify styles
+   ========================================================================== */
+pre {
+    position: relative;
+}
+pre[rel] {
+    padding-top: 44px;
+}
+pre[rel]:after {
+    background: rgba(0, 0, 0, .8);
+    color: rgba(200, 200, 200, .8);
+    content: attr(rel);
+    left: 0px;
+    padding: 8px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+.prettyprint {
+    background: rgba(255, 255, 255, .6);
+    border-color: rgba(0, 0, 0, 0.15);
+    border-style: solid;
+    border-width: 1px;
+}
+ol.linenums {
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+ol.linenums li {
+    border-left: 3px solid #aaa;
+    list-style: decimal-leading-zero inside;
+    padding-left: 10px;
+}
+.L1, .L3, .L5, .L7, .L9 {
+    background: rgba(205, 205, 205, .5);
+}
+.atn {
+    color: #f50f50;
+}
+.atv, .com {
+    color: #070;
+}
+.com {
+    font-style: italic;
+}
+.dec, .kwd {
+    color: #00f;
+}
+.kwd {
+    font-weight: bold;
+}
+.fun {
+    color: #c02;
+}
+.lit {
+    color: #f50;
+}
+.opn, .pln, .pun, .var, .clo {
+    color: #000;
+}
+.str {
+    color: #900;
+}
+.tag, .typ {
+    color: #37c;
+    font-weight: bold;
+}
+
+/* $App styles
+   ========================================================================== */
+.opening {
+    -webkit-transition-delay: 0s!important;
+       -moz-transition-delay: 0s!important;
+        -ms-transition-delay: 0s!important;
+         -o-transition-delay: 0s!important;
+            transition-delay: 0s!important;
+}
+
+.source {
+    -webkit-transition: opacity .5s ease, visibility 0s linear 0.5s;
+       -moz-transition: opacity .5s ease, visibility 0s linear 0.5s;
+        -ms-transition: opacity .5s ease, visibility 0s linear 0.5s;
+         -o-transition: opacity .5s ease, visibility 0s linear 0.5s;
+            transition: opacity .5s ease, visibility 0s linear 0.5s;
+    background: rgb(80, 80, 80);
+    background: rgba(0, 0, 0, 0.8);
+    /*display: none;*/
+    visibility: hidden;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    filter: alpha(opacity=0);
+    opacity: 0;
+}
+
+    .source pre {
+        background: rgb(200, 200, 200);
+        background: rgba(255, 255, 255, 0.9);
+        height: 70%;
+        width: 50%;
+        margin: 70px auto;
+        overflow: auto;
+        padding: 24px;
+        z-index: 90;
+    }
+        @media only screen and (max-width:480px) {
+            .source pre {
+                height: 95%;
+                margin: 0;
+                width: 100%;
+            }
+        }
+
+.close {
+    width: 80px;
+    height: 30px;
+    position: absolute;
+    top: 30px;
+    left: 25%;
+    margin-left: -25px;
+    z-index: 100;
+    text-align: center;
+    background: #ff7600;
+    color: #fff;
+    border:none;
+}
+    @media only screen and (max-width:480px) {
+        .close {
+            left: 0;
+            margin: 0;
+            top: 0;
+        }
+    }
+
+.fixed-inputs {
+    display:block;
+}
+
+.responsive-inputs {
+    display: none;
+}
+
+.preview {
+    height: 300px;
+    width: 960px;
+    position: absolute;
+    top: 240px;
+    left: 50%;
+    margin-left: -480px;
+    filter: alpha(opacity=40);
+    opacity: 0.4;
+    z-index: -9999;
+}
+    .preview div {
+        display: inline-block;
+        margin: 0;
+    }
+
+.preview-edge {
+    background: #000;
+    height: 100%;
+    width: 10px;
+}
+
+.preview-column {
+    background: #cdcdcd;
+    height: 100%;
+    width: 60px;
+}
+
+.preview-gutter {
+    background: #eb3c00;
+    height: 100%;
+    width: 20px;
+}
+
+.btn-align { margin-top: 42px; }
+.lbl-align { margin-bottom: 27px; }
+        @media only screen and (max-width:480px) {
+            .btn-align { margin-top: 27px; }
+            .lbl-align { margin-bottom: 27px; }
+        }
