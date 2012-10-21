@@ -1,6 +1,6 @@
 # Griddles
 
-Griddles is yet _another_ grid creator. I'm hoping to compile a bunch of different grids into one place. Mainly it was a way to mess with JavaScript and TypeScript, which, is pretty nice.
+Griddles is yet _another_ grid creator. I'm hoping to compile a bunch of different grids into one place. Mainly it was a way to mess with JavaScript and TypeScript, which, is pretty nice. Hosted @ [griddles.bryanckizer.com](http://griddles.bryanckizer.com/)
 
 ### License
 Griddles is released under an MIT  License
