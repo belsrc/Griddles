@@ -31,16 +31,16 @@
         global $count, $column, $gutter, $total, $max, $isRwd;
 
         // If NOT Rwd size is equal to total
-        // If IS Rwd and NOT full size is equal to max
+        // If IS Rwd and NOT full, size is equal to max
         // Otherwise, assume 960
         $size = $isRwd == 0 ? $total :
                 $max != -1 ? $max : 960;
 
-        // If IS Rwd gutterWidth is equal to gutter
+        // If NOT Rwd gutterWidth is equal to gutter
         // Otherwise, 2% of size
         $gutterWidth = $isRwd == 0 ? $gutter : round( $size * .02 );
 
-        // If IS Rwd columnWidth is equal to column
+        // If NOT Rwd columnWidth is equal to column
         // Otherwise, figure the percent by taking the number of gutters (double the column count) from 100%
         //      divided by the number of columns times 100. Multiple the size by the percent
         $columnWidth = $isRwd == 0 ? $column : round( $size * ( 100 - ( $count * 2 ) ) / ( $count * 100 ) );
