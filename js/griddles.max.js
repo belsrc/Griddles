@@ -86,14 +86,13 @@
             $('#btnCode').click(function () {
                 GenerateSource();
                 $('.source').addClass('opening');
-                $('.source').css({ 'visibility': 'visible', 'opacity': '1'
-                });
+                $('.source').css({'visibility': 'visible','opacity': '1'});
             });
         });
         $(function () {
             $('#close-btn').click(function () {
                 $('.source').removeClass('opening');
-                $('.source').css({ 'visibility': 'hidden', 'opacity': '0' });
+                $('.source').css({'visibility': 'hidden','opacity': '0'});
             });
         });
         SetGridCount();
@@ -106,12 +105,7 @@
     }
     function SetTotalWidth() {
         var w = grid.isRwd ? grid.max + 'px' : grid.total + 'px';
-        var qString = '?count=' + grid.count + '&column=' + grid.column + '&gutter=' + grid.gutter + '&total=' + grid.total + '&max=' + grid.max + '&isRwd=' + grid.isRwd;
         $('#gridExample').css('width', w);
-        $('#btnPs').prop("href", "photoshop" + qString);
-        $('#btnAi').prop("href", "illustrator" + qString);
-        $('#btnFw').prop("href", "fireworks" + qString);
-        $('#btnCss').prop("href", "css" + qString);
     }
     function SetGridCount() {
         var i;
@@ -187,6 +181,14 @@
             $('#layout-contain').append(newRow);
         }
         $('.layout').css('margin', '0 ' + edg);
+        SetLinks();
+    }
+    function SetLinks() {
+        var flag = grid.isRwd ? 1 : 0;
+        var qString = '?count=' + grid.count + '&column=' + grid.column + '&gutter=' + grid.gutter + '&total=' + grid.total + '&max=' + grid.max + '&isRwd=' + flag;
+        $('#btnPs').prop("href", "photoshop.php" + qString);
+        $('#btnFw').prop("href", "fireworks.php" + qString);
+        $('#btnCss').prop("href", "css.php" + qString);
     }
     function GenerateSource() {
         if($('#cmbGridType').val() === 'Static Grid-960 Based' || $('#cmbGridType').val() === 'Fluid Grid-960 Based') {

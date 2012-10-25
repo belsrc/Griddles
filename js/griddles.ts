@@ -29,7 +29,7 @@ class GridSystem {
 $(document).ready(function () {
     /* GridSystem object */
     grid = new GridSystem();
-    
+
     /* Event handler for the Column Count text changed event
        Sets grid.Count to the textbox value */
     $( function () {
@@ -38,11 +38,11 @@ $(document).ready(function () {
                 grid.count = parseInt( $( this ).val(), 10 );
                 grid.total = grid.count * grid.column + grid.count * grid.gutter;
                 SetGridCount();
-				DrawLayout();
+                DrawLayout();
             }
         } );
     } );
-    
+
     /* Event handler for the Column Width text changed event
        Sets grid.Column to the textbox value */
     $( function () {
@@ -54,11 +54,11 @@ $(document).ready(function () {
                 SetGridColumn();
                 CenterPreviewPanel();
                 SetPreviewLabels();
-				DrawLayout();
+                DrawLayout();
             }
         } );
     } );
-    
+
     /* Event handler for the Gutter Width text changed event
        Sets grid.Gutter to the textbox value */
     $( function () {
@@ -71,11 +71,11 @@ $(document).ready(function () {
                 SetGridGutter();
                 CenterPreviewPanel();
                 SetPreviewLabels();
-				DrawLayout();
+                DrawLayout();
             }
         } );
     } );
-    
+
     /* Event handler for the Total Width text changed event
        Sets grid.Max to the textbox value */
     $( function () {
@@ -87,11 +87,11 @@ $(document).ready(function () {
                 SetTotalWidth();
                 CenterPreviewPanel();
                 SetPreviewLabels();
-				DrawLayout();
+                DrawLayout();
             }
         } );
     } );
-    
+
     /* Event handler for the grid type change event
        Sets grid.isRwd to true or false */
     $( function () {
@@ -105,16 +105,16 @@ $(document).ready(function () {
                 $( '.fixed-inputs' ).css( 'display', 'block' );
                 $( '.responsive-inputs' ).css( 'display', 'none' );
             }
-            
+
             SetMaximumWidth();
             SetGridGutter();
             SetGridColumn();
             CenterPreviewPanel();
             SetPreviewLabels();
-			DrawLayout();
+            DrawLayout();
         } );
     } );
-    
+
     /* Event handler for the Code Button click event
        Generates the grid source
        Adds the .opening class
@@ -126,7 +126,7 @@ $(document).ready(function () {
             $( '.source' ).css( { 'visibility':'visible', 'opacity':'1' } );
         } );
     } );
-    
+
     /* Event handler for the Close Button click event
        Removes the .opening class
        Set .source visibility and opacity */
@@ -138,7 +138,7 @@ $(document).ready(function () {
     } );
 
     SetGridCount();
-	DrawLayout();
+    DrawLayout();
 });
 
 /* Sets the grids maximum width */
@@ -152,14 +152,7 @@ function SetMaximumWidth() {
 /* Sets the grids total width */
 function SetTotalWidth() {
     var w = grid.isRwd ? grid.max + 'px' : grid.total + 'px';
-	var qString = '?count=' + grid.count + '&column=' + grid.column + '&gutter=' + grid.gutter +
-					'&total=' + grid.total + '&max=' + grid.max + '&isRwd=' + grid.isRwd;
-
     $( '#gridExample' ).css( 'width', w );
-	$( '#btnPs' ).prop( "href", "photoshop" + qString );
-	$( '#btnAi' ).prop( "href", "illustrator" + qString );
-	$( '#btnFw' ).prop( "href", "fireworks" + qString );
-	$( '#btnCss' ).prop( "href", "css" + qString );
 }
 
 /* Sets the grids number of columns */
@@ -176,7 +169,7 @@ function SetGridCount() {
 
     $( '#gridExample' ).append( '<div class="preview-column"></div>' );
     $( '#gridExample' ).append( '<div class="preview-edge"></div>' );
-    
+
     SetGridGutter();
     SetGridColumn();
     CenterPreviewPanel();
@@ -221,37 +214,49 @@ function CenterPreviewPanel() {
 
 /* Draw the live layout */
 function DrawLayout() {
-	var edg = grid.isRwd ? '1%' : grid.edge + 'px',
+    var edg = grid.isRwd ? '1%' : grid.edge + 'px',
         gut = grid.isRwd ? '2%' : grid.gutter + 'px',
-		wid = grid.isRwd ? grid.max + 'px' : grid.total + 'px',
-		tmp = ( 100 - ( grid.count * 2 ) ) / grid.count,
+        wid = grid.isRwd ? grid.max + 'px' : grid.total + 'px',
+        tmp = ( 100 - ( grid.count * 2 ) ) / grid.count,
         col = grid.isRwd ? tmp + '%' : grid.column + 'px';
-	
-	$( '#layoutExample' ).empty();
+
+    $( '#layoutExample' ).empty();
     $( '#layoutExample' ).append( '<div id="layout-contain"></div>' );
-	$( '#layout-contain' ).css({ 'width':wid, 'margin':'0 auto' });
-	
-	for( var i = 0; i < grid.count; i++ ) {
-		var first, next;
-		
-		if( grid.isRwd ) {
-			var tw = Math.round((( 100 - grid.count * 2 ) / grid.count * ( i + 1 ) + ( i * 2 )) * 100 ) / 100;
-			first = tw + '%';
-			next = ( 96 - tw ) + '%';
-		}
-		else {
-			first = ( grid.column * ( i + 1 ) + grid.gutter * i ) + 'px';
-			next = ( grid.total - grid.gutter * 2 - parseInt( first ) ) + 'px';
-		}
-		
-		var newRow = $( '<div>' ).addClass( 'layout-row' ).append(
-						$( '<div>' ).addClass( 'layout').css({ 'margin-right':gut,'width':first }).text(i + 1),
-						$( '<div>' ).addClass( 'layout').css({ 'margin-right':gut,'width':next }).text( grid.count - ( i + 1 ))
-					);
+    $( '#layout-contain' ).css({ 'width':wid, 'margin':'0 auto' });
+
+    for( var i = 0; i < grid.count - 1; i++ ) {
+        var first, next;
+
+        if( grid.isRwd ) {
+            var tw = Math.round((( 100 - grid.count * 2 ) / grid.count * ( i + 1 ) + ( i * 2 )) * 100 ) / 100;
+            first = tw + '%';
+            next = ( 96 - tw ) + '%';
+        }
+        else {
+            first = ( grid.column * ( i + 1 ) + grid.gutter * i ) + 'px';
+            next = ( grid.total - grid.gutter * 2 - parseInt( first ) ) + 'px';
+        }
+
+        var newRow = $( '<div>' ).addClass( 'layout-row' ).append(
+                        $( '<div>' ).addClass( 'layout').css({ 'margin-right':gut,'width':first }).text(i + 1),
+                        $( '<div>' ).addClass( 'layout').css({ 'margin-right':gut,'width':next }).text( grid.count - ( i + 1 ))
+                    );
             $( '#layout-contain' ).append( newRow );
-	}
-	
-	$( '.layout' ).css( 'margin', '0 ' + edg );
+    }
+
+    $( '.layout' ).css( 'margin', '0 ' + edg );
+    SetLinks();
+}
+
+/* Set the query strings in the links */
+function SetLinks() {
+    var flag = grid.isRwd ? 1 : 0;
+    var qString = '?count=' + grid.count + '&column=' + grid.column + '&gutter=' + grid.gutter +
+                    '&total=' + grid.total + '&max=' + grid.max + '&isRwd=' + flag;
+
+    $( '#btnPs' ).prop( "href", "photoshop.php" + qString );
+    $( '#btnFw' ).prop( "href", "fireworks.php" + qString );
+    $( '#btnCss' ).prop( "href", "css.php" + qString );
 }
 
 /* Generates the css for the specified grid */

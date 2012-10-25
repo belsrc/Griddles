@@ -399,6 +399,15 @@ input, button {
         }
     }
 
+.last-btn {
+    margin-left: 141px;
+}
+    @media only screen and (max-width:768px) {
+        .last-btn {
+            margin-left: 0;
+        }
+    }
+    
 /* $Control styles
    ========================================================================== */
 /* Base control styles */
@@ -474,6 +483,32 @@ input, button {
     .combobox {
         position:relative;
     }
+        .combobox:before {
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 26px;
+            right: 0;
+            top: 0;
+            background: -webkit-linear-gradient(top, #fff, #e0e0e0);
+            background:    -moz-linear-gradient(top, #fff, #e0e0e0);
+            background:     -ms-linear-gradient(top, #fff, #e0e0e0);
+            background:      -o-linear-gradient(top, #fff, #e0e0e0);
+            background:         linear-gradient(top, #fff, #e0e0e0);
+            border-left: 1px solid #c8c8c8;
+            border-color: rgba(0, 0, 0, .25);
+        }
+        .combobox:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 5px;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 8px solid #646464;
+            z-index: 99;
+            margin-top:-4px;
+        }
         .combobox > .cmb-items {
             cursor: pointer;
             display: none;
@@ -510,32 +545,6 @@ input, button {
         position:relative;
         padding-right: 27px;
     }
-        .cmb-body:before {
-            content: "";
-            position: absolute;
-            height: 100%;
-            width: 26px;
-            right: 0;
-            top: 0;
-            background: -webkit-linear-gradient(top, #fff, #e0e0e0);
-            background:    -moz-linear-gradient(top, #fff, #e0e0e0);
-            background:     -ms-linear-gradient(top, #fff, #e0e0e0);
-            background:      -o-linear-gradient(top, #fff, #e0e0e0);
-            background:         linear-gradient(top, #fff, #e0e0e0);
-            border-left: 1px solid #c8c8c8;
-            border-color: rgba(0, 0, 0, .25);
-        }
-        .cmb-body:after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            right: 5px;
-            border-left: 8px solid transparent;
-            border-right: 8px solid transparent;
-            border-top: 8px solid #646464;
-            z-index: 99;
-            margin-top:-4px;
-        }
 
 /* $Misc styles
    ========================================================================== */
