@@ -26,7 +26,7 @@
         }
     }
 
-    function GeneratePhotoshopScript() {//$s .= "\n";
+    function GeneratePhotoshopScript() {
         // Get the globals
         global $count, $column, $gutter, $total, $max, $isRwd;
 
