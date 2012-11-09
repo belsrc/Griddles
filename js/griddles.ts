@@ -1,8 +1,4 @@
 
-// Ambient declare for jQuery
-declare var $;
-declare var jQuery;
-
 /* GridSystem object variable */
 var grid;
 
@@ -26,171 +22,83 @@ class GridSystem {
     }
 }
 
-$(document).ready(function () {
-    /* GridSystem object */
-    grid = new GridSystem();
-
-    /* Event handler for the Column Count text changed event
-       Sets grid.Count to the textbox value */
-    $( function () {
-        $( '#txtColCount' ).bind( 'click keyup change', function () {
-            if ( $.isNumeric( $( this ).val() ) ) {
-                grid.count = parseInt( $( this ).val(), 10 );
-                grid.total = grid.count * grid.column + grid.count * grid.gutter;
-                SetGridCount();
-                DrawLayout();
-            }
-        } );
-    } );
-
-    /* Event handler for the Column Width text changed event
-       Sets grid.Column to the textbox value */
-    $( function () {
-        $( '#txtColWidth' ).bind( 'click keyup change', function () {
-            if ( $.isNumeric( $( this ).val() ) ) {
-                grid.column = parseInt( $( this ).val(), 10 );
-                grid.total = grid.count * grid.column + grid.count * grid.gutter;
-                SetTotalWidth();
-                SetGridColumn();
-                CenterPreviewPanel();
-                SetPreviewLabels();
-                DrawLayout();
-            }
-        } );
-    } );
-
-    /* Event handler for the Gutter Width text changed event
-       Sets grid.Gutter to the textbox value */
-    $( function () {
-        $( '#txtGutWidth' ).bind( 'click keyup change', function () {
-            if ( $.isNumeric( $( this ).val() ) ) {
-                grid.gutter = parseInt( $( this ).val(), 10 );
-                grid.edge = grid.gutter * .5;
-                grid.total = grid.count * grid.column + grid.count * grid.gutter;
-                SetTotalWidth();
-                SetGridGutter();
-                CenterPreviewPanel();
-                SetPreviewLabels();
-                DrawLayout();
-            }
-        } );
-    } );
-
-    /* Event handler for the Total Width text changed event
-       Sets grid.Max to the textbox value */
-    $( function () {
-        $( '#numGridSize' ).bind( 'click keyup change', function () {
-            if ( $.isNumeric( $( this ).val() ) ) {
-                var maximum = $( this ).val() === '0' ? -1 : parseInt( $( this ).val(), 10 );
-                grid.max = maximum;
-                SetMaximumWidth();
-                SetTotalWidth();
-                CenterPreviewPanel();
-                SetPreviewLabels();
-                DrawLayout();
-            }
-        } );
-    } );
-
-    /* Event handler for the grid type change event
-       Sets grid.isRwd to true or false */
-    $( function () {
-        $( '#cmbGridType' ).change( function () {
-            grid.isRwd = $( this ).val() === 'Fluid Grid-960 Based';
-            if( grid.isRwd ) {
-                $( '.fixed-inputs' ).css( 'display', 'none' );
-                $( '.responsive-inputs' ).css( 'display', 'block' );
-            }
-            else {
-                $( '.fixed-inputs' ).css( 'display', 'block' );
-                $( '.responsive-inputs' ).css( 'display', 'none' );
-            }
-
-            SetMaximumWidth();
-            SetGridGutter();
-            SetGridColumn();
-            CenterPreviewPanel();
-            SetPreviewLabels();
-            DrawLayout();
-        } );
-    } );
-
-    /* Event handler for the Code Button click event
-       Generates the grid source
-       Adds the .opening class
-       Sets .source visibility and opacity */
-    $( function () {
-        $( '#btnCode' ).click( function () {
-            GenerateSource();
-            $( '.source' ).addClass( 'opening' );
-            $( '.source' ).css( { 'visibility':'visible', 'opacity':'1' } );
-        } );
-    } );
-
-    /* Event handler for the Close Button click event
-       Removes the .opening class
-       Set .source visibility and opacity */
-    $( function () {
-        $( '#close-btn' ).click( function () {
-            $( '.source' ).removeClass( 'opening' );
-            $( '.source' ).css( { 'visibility':'hidden', 'opacity':'0' } );
-        } );
-    } );
-
-    SetGridCount();
-    DrawLayout();
-});
+/* Faster parseInt */
+function parseNumber(source) {
+	return source * 1 || 0;
+}
 
 /* Sets the grids maximum width */
 function SetMaximumWidth() {
     var m = !grid.isRwd ? '100%' :
             grid.max !== -1 ? grid.max + 'px' : '100%';
-    $( '#gridExample' ).css( 'max-width', m );
-    $( '#gridExample' ).css( 'width', m );
+    var example = document.getElementById('gridExample');
+    example.style.maxWidth = m;
+    example.style.width = m;
 }
 
 /* Sets the grids total width */
 function SetTotalWidth() {
     var w = grid.isRwd ? grid.max + 'px' : grid.total + 'px';
-    $( '#gridExample' ).css( 'width', w );
+    document.getElementById('gridExample').style.width = w;
 }
 
 /* Sets the grids number of columns */
 function SetGridCount() {
-    var i;
-    SetTotalWidth();
+    var i,
+        inner = '',
+        w = grid.isRwd ? grid.max + 'px' : grid.total + 'px',
+        tmp = ( 100 - ( grid.count * 2 ) ) / grid.count,
+        example = document.getElementById('gridExample'),
+        c = '<div class="preview-column"style="width: ' +
+            ( grid.isRwd ? tmp + '%' : grid.column + 'px' ) +';"></div>',
+        g = '<div class="preview-gutter" style="width: ' +
+            ( grid.isRwd ? '2%' : grid.gutter + 'px' )+';"></div>',
+        e = '<div class="preview-edge" style="width: ' +
+            ( grid.isRwd ? '1%' : grid.edge + 'px' ) +';"></div>';
+        
+        example.style.width = w;
+        
+        inner += e;
+        for ( i = 0; i < grid.count - 1; i++ ) {
+            inner += c;
+            inner += g;
+        }
+        inner += c;
+        inner += e;
+        
+        example.innerHTML = inner;
 
-    $( '#gridExample' ).empty();
-    $( '#gridExample' ).append( '<div class="preview-edge"></div>' );
-    for ( i = 0; i < grid.count - 1; i++ ) {
-        $( '#gridExample' ).append( '<div class="preview-column"></div>' );
-        $( '#gridExample' ).append( '<div class="preview-gutter"></div>' );
-    }
-
-    $( '#gridExample' ).append( '<div class="preview-column"></div>' );
-    $( '#gridExample' ).append( '<div class="preview-edge"></div>' );
-
-    SetGridGutter();
-    SetGridColumn();
-    CenterPreviewPanel();
-    SetPreviewLabels();
+        CenterPreviewPanel();
+        SetPreviewLabels();
 }
 
 /* Sets the grids gutter width */
 function SetGridGutter() {
-    var edg = grid.isRwd ? '1%' : grid.edge + 'px',
+    var i,
+        edg = grid.isRwd ? '1%' : grid.edge + 'px',
         gut = grid.isRwd ? '2%' : grid.gutter + 'px';
-
-    $( '.preview-edge' ).css( 'width', edg );
-    $( '.preview-gutter' ).css( 'width', gut );
+    
+    var edgeList = document.getElementsByClassName('preview-edge');
+    var gutterList = document.getElementsByClassName('preview-gutter');
+    
+    for( i = 0; i < edgeList.length; i++ ) {
+        edgeList[i].style.width = edg;
+    }
+    for( i = 0; i < gutterList.length; i++ ) {
+        gutterList[i].style.width = gut;
+    }
 }
 
 /* Sets the grids column width */
 function SetGridColumn() {
-    var tmp = ( 100 - ( grid.count * 2 ) ) / grid.count,
-        col = grid.isRwd ? tmp + '%' : grid.column + 'px';
-
-    $( '.preview-column' ).css( 'width', col );
+    var i,
+        tmp = ( 100 - ( grid.count * 2 ) ) / grid.count,
+        col = grid.isRwd ? tmp + '%' : grid.column + 'px',
+        columnList = document.getElementsByClassName('preview-column');
+    
+    for( i = 0; i < columnList.length; i++ ) {
+        columnList[i].style.width = col;
+    }
 }
 
 /* Sets the labels that indicate the total and content width */
@@ -200,8 +108,8 @@ function SetPreviewLabels() {
     var content = !grid.isRwd ? ( grid.total - grid.gutter ).toString() + 'px' :
                   grid.max !== -1 ? ( Math.round( grid.max * .98 ) ).toString() + 'px' : '98%';
 
-    $( '#lblTotalSize' ).html( 'Total Size : ' + total );
-    $( '#lblContentSize' ).html( 'Content Size : ' + content );
+    document.getElementById('lblTotalSize').innerHTML = 'Total Size : ' + total
+    document.getElementById('lblContentSize').innerHTML = 'Content Size : ' + content
 }
 
 /* Centers the preview panel in the window */
@@ -209,42 +117,39 @@ function CenterPreviewPanel() {
     var offset = !grid.isRwd ?  '-' + ( grid.total / 2 ).toString() + 'px' :
                  grid.max !== -1 ? '-' + ( grid.max / 2 ).toString() + 'px' : '-50%';
 
-    $( '#gridExample' ).css( 'margin-left', offset );
+    document.getElementById('gridExample').style.marginLeft = offset;
 }
 
 /* Draw the live layout */
 function DrawLayout() {
-    var edg = grid.isRwd ? '1%' : grid.edge + 'px',
-        gut = grid.isRwd ? '2%' : grid.gutter + 'px',
-        wid = grid.isRwd ? grid.max + 'px' : grid.total + 'px',
-        tmp = ( 100 - ( grid.count * 2 ) ) / grid.count,
-        col = grid.isRwd ? tmp + '%' : grid.column + 'px';
-
-    $( '#layoutExample' ).empty();
-    $( '#layoutExample' ).append( '<div id="layout-contain"></div>' );
-    $( '#layout-contain' ).css({ 'width':wid, 'margin':'0 auto' });
-
-    for( var i = 0; i < grid.count - 1; i++ ) {
-        var first, next;
-
+    var first, next, i, tw,
+        s = '',
+        edg = grid.isRwd ? '1%' : grid.edge + 'px',
+        col = grid.isRwd ? ( 100 - ( grid.count * 2 ) ) / grid.count + '%' : grid.column + 'px';
+        
+    s += '<div id="layout-contain" style="margin: 0 auto; width:' + 
+         (grid.isRwd ? grid.max + 'px' : grid.total + 'px') + '">';
+    
+    for( i = 0; i < grid.count - 1; i++ ) {
         if( grid.isRwd ) {
-            var tw = Math.round((( 100 - grid.count * 2 ) / grid.count * ( i + 1 ) + ( i * 2 )) * 100 ) / 100;
+            tw = Math.round((( 100 - grid.count * 2 ) / grid.count * ( i + 1 ) + ( i * 2 )) * 100 ) / 100;
             first = tw + '%';
             next = ( 96 - tw ) + '%';
         }
         else {
             first = ( grid.column * ( i + 1 ) + grid.gutter * i ) + 'px';
-            next = ( grid.total - grid.gutter * 2 - parseInt( first ) ) + 'px';
+            next = ( grid.total - grid.gutter * 2 - parseInt( first, 10 ) ) + 'px';
         }
-
-        var newRow = $( '<div>' ).addClass( 'layout-row' ).append(
-                        $( '<div>' ).addClass( 'layout').css({ 'margin-right':gut,'width':first }).text(i + 1),
-                        $( '<div>' ).addClass( 'layout').css({ 'margin-right':gut,'width':next }).text( grid.count - ( i + 1 ))
-                    );
-            $( '#layout-contain' ).append( newRow );
+        
+        s += '<div class="layout-row">';
+            s += '<div class="layout" style="width:' + first + ';margin:0 ' + edg + ';">' + ( i + 1 ) + '</div>';
+            s += '<div class="layout" style="width:' + next + ';margin:0 ' + edg + ';">' + ( grid.count - ( i + 1 ) ) + '</div>';
+        s += '</div>';
     }
+    
+    s += '</div>'
+    document.getElementById('layoutExample').innerHTML = s;
 
-    $( '.layout' ).css( 'margin', '0 ' + edg );
     SetLinks();
 }
 
@@ -253,21 +158,21 @@ function SetLinks() {
     var flag = grid.isRwd ? 1 : 0;
     var qString = '?count=' + grid.count + '&column=' + grid.column + '&gutter=' + grid.gutter +
                     '&total=' + grid.total + '&max=' + grid.max + '&isRwd=' + flag;
-
-    $( '#btnPs' ).prop( "href", "photoshop.php" + qString );
-    $( '#btnFw' ).prop( "href", "fireworks.php" + qString );
-    $( '#btnCss' ).prop( "href", "css.php" + qString );
+    document.getElementById('btnPs').setAttribute( 'href', 'photoshop.php' + qString );
+    document.getElementById('btnFw').setAttribute( 'href', 'fireworks.php' + qString );
+    document.getElementById('btnCss').setAttribute( 'href', 'css.php' + qString );
 }
 
 /* Generates the css for the specified grid */
 function GenerateSource() {
-    if( $( '#cmbGridType' ).val() === 'Static Grid-960 Based' ||
-        $( '#cmbGridType' ).val() === 'Fluid Grid-960 Based')
+    var gridType = document.getElementById('cmbGridType').value;
+    if( gridType === 'Static Grid-960 Based' ||
+        gridType === 'Fluid Grid-960 Based')
     {
-        $( '#code' ).empty().html( GenerateNineSixtyBased() );
+        document.getElementById('code').innerHTML = GenerateNineSixtyBased();
     }
     else {
-
+        // Put other grid types here
     }
 
     prettyPrint();
@@ -366,3 +271,125 @@ function GenerateNineSixtyBased() {
     bfs += '.clearfix, .container { zoom: 1; }\n';
     return bfs;
 }
+
+/* Event handler for the Column Count text changed event
+   Sets grid.Count to the textbox value */
+function columnCount() {
+    var num = parseNumber( this.value );
+    grid.count =  num;
+    grid.total = grid.count * grid.column + grid.count * grid.gutter;
+    SetGridCount();
+    DrawLayout();
+}
+
+/* Event handler for the Column Width text changed event
+   Sets grid.Column to the textbox value */
+function columnWidth() {
+    var num = parseNumber( this.value );
+    grid.column = num;
+    grid.total = grid.count * grid.column + grid.count * grid.gutter;
+    SetTotalWidth();
+    SetGridColumn();
+    CenterPreviewPanel();
+    SetPreviewLabels();
+    DrawLayout();
+}
+
+/* Event handler for the Gutter Width text changed event
+   Sets grid.Gutter to the textbox value */ 
+function gutterWidth() {
+    var num = parseNumber( this.value );
+    grid.gutter = num;
+    grid.edge = grid.gutter * .5;
+    grid.total = grid.count * grid.column + grid.count * grid.gutter;
+    SetTotalWidth();
+    SetGridGutter();
+    CenterPreviewPanel();
+    SetPreviewLabels();
+    DrawLayout();
+}
+
+/* Event handler for the Total Width text changed event
+   Sets grid.Max to the textbox value */  
+function gridSize() {
+    var num = parseNumber( this.value );
+    var maximum = num === 0 ? -1 : num;
+    grid.max = maximum;
+    SetMaximumWidth();
+    SetTotalWidth();
+    CenterPreviewPanel();
+    SetPreviewLabels();
+    DrawLayout();
+}
+
+/* Event handler for the grid type change event
+   Sets grid.isRwd to true or false */
+function gridType() {
+    grid.isRwd = this.value === 'Fluid Grid-960 Based';
+    
+    var fixedList = document.getElementsByClassName('fixed-inputs');
+    var fluidList = document.getElementsByClassName('responsive-inputs');
+    var i;
+    
+    if( grid.isRwd ) {
+        for( i = 0; i < fixedList.length; i++ ) {
+            fixedList[i].style.display = 'none';
+        }
+        for( i = 0; i < fluidList.length; i++ ) {
+            fluidList[i].style.display = 'block';
+        }
+    }
+    else {
+        for( i = 0; i < fixedList.length; i++ ) {
+            fixedList[i].style.display = 'block';
+        }
+        for( i = 0; i < fluidList.length; i++ ) {
+            fluidList[i].style.display = 'none';
+        }
+    }
+    
+    SetMaximumWidth();
+    SetGridGutter();
+    SetGridColumn();
+    CenterPreviewPanel();
+    SetPreviewLabels();
+    DrawLayout();
+}
+
+/* Event handler for the Code Button click event
+   Generates the grid source
+   Adds the .opening class
+   Sets .source visibility and opacity */
+function btnCodeClick() {
+    GenerateSource();
+    var src = document.getElementsByClassName('source')[0];
+    src.className += ' opening';
+    src.style.visibility = 'visible';
+    src.style.opacity = '1';
+}
+
+/* Event handler for the Close Button click event
+   Removes the .opening class
+   Set .source visibility and opacity */
+function btnCloseClick() {
+    var src = document.getElementsByClassName('source')[0];
+    src.className = src.className.replace(/(?:^|\s)opening(?!\S)/g , '');
+    src.style.visibility = 'hidden';
+    src.style.opacity = '0';
+}
+
+/* Set Mouse event listeners */
+document.getElementById( 'txtColCount' ).addEventListener( 'change', columnCount, false );
+document.getElementById( 'txtColWidth' ).addEventListener( 'change', columnWidth, false );
+document.getElementById( 'txtGutWidth' ).addEventListener( 'change', gutterWidth, false );
+document.getElementById( 'numGridSize' ).addEventListener( 'change', gridSize, false );
+document.getElementById( 'cmbGridType' ).addEventListener( 'change', gridType, false );
+document.getElementById( 'btnCode' ).addEventListener( 'click', btnCodeClick, false );
+document.getElementById( 'close-btn' ).addEventListener( 'click', btnCloseClick, false );
+
+/* Create the grid object and draw the previews */
+(function () {
+    grid = new GridSystem();
+    SetGridCount();
+    DrawLayout();
+})();

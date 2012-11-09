@@ -254,9 +254,9 @@ body {
                       -webkit-linear-gradient(0deg, rgba(125, 125, 125, .04) 1px, transparent 1px);
 
     background-image: -moz-linear-gradient(rgba(125, 125, 125, .04) 2px, transparent 2px),
-                      -moz-linear-gradient(90deg, rgba(125, 125, 125, .04) 2px, transparent 2px),
+                      -moz-linear-gradient(0deg, rgba(125, 125, 125, .04) 2px, transparent 2px),
                       -moz-linear-gradient(rgba(125, 125, 125, .04) 1px, transparent 1px),
-                      -moz-linear-gradient(90deg, rgba(125, 125, 125, .04) 1px, transparent 1px);
+                      -moz-linear-gradient(0deg, rgba(125, 125, 125, .04) 1px, transparent 1px);
 
     background-image: -ms-linear-gradient(rgba(125, 125, 125, .04) 2px, transparent 2px),
                       -ms-linear-gradient(0deg, rgba(125, 125, 125, .04) 2px, transparent 2px),
@@ -490,6 +490,7 @@ input, button {
             width: 26px;
             right: 0;
             top: 0;
+            background: #e0e0e0;
             background: -webkit-linear-gradient(top, #fff, #e0e0e0);
             background:    -moz-linear-gradient(top, #fff, #e0e0e0);
             background:     -ms-linear-gradient(top, #fff, #e0e0e0);
